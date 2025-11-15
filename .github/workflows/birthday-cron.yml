@@ -1,0 +1,20 @@
+name: Birthday Cron Job (Testing)
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"   # every 1 minute
+  workflow_dispatch:        # optional: manual run
+
+jobs:
+  check-birthdays:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Run birthday script
+        run: node birthdayCron.js
